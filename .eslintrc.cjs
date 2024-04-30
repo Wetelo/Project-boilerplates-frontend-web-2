@@ -5,6 +5,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:tailwindcss/recommended',
   ],
   ignorePatterns: ['.next', '.eslintrc.cjs'],
   plugins: ['@typescript-eslint'],
@@ -15,4 +16,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   root: true,
+  rules: {
+    'tailwindcss/no-arbitrary-value': 'warn',
+  },
 };
