@@ -7,7 +7,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:tailwindcss/recommended',
   ],
-  ignorePatterns: ['.next', '.eslintrc.cjs'],
+  ignorePatterns: ['.next', '.eslintrc.cjs', 'postcss.config.mjs'],
   plugins: ['@typescript-eslint'],
   parserOptions: {
     ecmaVersion: 'latest',
