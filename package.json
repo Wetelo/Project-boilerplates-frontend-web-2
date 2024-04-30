@@ -35,5 +35,8 @@
   "packageManager": "yarn@4.1.1",
   "lint-staged": {
     "*.{ts,tsx}": "eslint --cache --fix"
+  },
+  "engines": {
+    "node": "20.12.2"
   }
 }
