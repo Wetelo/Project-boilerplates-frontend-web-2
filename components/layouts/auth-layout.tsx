@@ -2,6 +2,7 @@ import logo from '@/public/wetelo.svg';
 import backgroundImage from './background.jpg';
 import { FC, PropsWithChildren } from 'react';
 import { Picture } from '../ui-kit/picture';
+import { Home } from '@/utils/routes';
 
 const AuthLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -11,7 +12,9 @@ const AuthLayout: FC<PropsWithChildren> = ({ children }) => {
           <Picture src={backgroundImage} role="presentation" fill />
         </div>
         <div className="flex flex-col items-center">
-          <Picture className="mb-4 !w-40 md:mb-10 md:!w-96" src={logo} height={1038} width={746} alt="Logo" />
+          <Home.Link>
+            <Picture className="mb-4 !w-40 md:mb-10 md:!w-96" src={logo} height={1038} width={746} alt="Logo" />
+          </Home.Link>
           <p className="mb-5 text-center text-xl font-normal leading-9 text-white md:text-3xl">
             Software Product <br /> Development Company
           </p>

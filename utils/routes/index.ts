@@ -7,8 +7,13 @@ const defaultInfo = {
 };
 
 import * as HomeRoute from '@/app/page.info';
+import * as LoginRoute from '@/app/login/page.info';
 
 export const Home = makeRoute('/', {
   ...defaultInfo,
   ...HomeRoute.Route,
+});
+export const Login = makeRoute('/login', {
+  ...defaultInfo,
+  ...LoginRoute.Route,
 });
