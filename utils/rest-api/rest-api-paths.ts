@@ -6,7 +6,7 @@ const defaultInfo = {
   params: z.object({}),
 };
 
-export const API_PATHS = {
+export const REST_API_PATHS = {
   LOGIN: makeRoute('/auth/login', {
     ...defaultInfo,
     name: 'LOGIN',

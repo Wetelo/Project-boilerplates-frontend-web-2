@@ -2,10 +2,11 @@ import type { Config } from 'tailwindcss';
 
 const config = {
   darkMode: ['class'],
-  content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}'],
+  content: ['./pages/**/*.{ts,tsx}', './views/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}'],
   theme: {
     container: {
       center: true,
+      padding: '0 2rem',
     },
   },
   extend: {
