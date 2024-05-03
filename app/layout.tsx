@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import '../styles/globals.css';
 import { ManagedDialog } from '@/components/common/managed-dialog/managed-dialog';
 import { DialogProvider } from '@/components/common/managed-dialog/dialog.context';
+import { QueryClientProvider, queryClient } from '@/components/providers/query-client/query-client.provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,10 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <DialogProvider>
-          <ManagedDialog />
-          {children}
-        </DialogProvider>
+        <QueryClientProvider client={queryClient}>
+          <DialogProvider>
+            <ManagedDialog />
+            {children}
+          </DialogProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );
