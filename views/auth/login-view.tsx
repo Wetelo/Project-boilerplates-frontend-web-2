@@ -11,7 +11,7 @@ type LoginFormValues = {
   password: string;
 };
 
-const LoginView = () => {
+export const LoginView = () => {
   const { register, handleSubmit } = useForm<LoginFormValues>({
     defaultValues: {
       email: '',
@@ -41,5 +41,3 @@ const LoginView = () => {
     </form>
   );
 };
-
-export default LoginView;
