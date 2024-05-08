@@ -9,6 +9,7 @@ const defaultInfo = {
 import * as HomeRoute from '@/app/page.info';
 import * as LoginRoute from '@/app/login/page.info';
 import * as LogoutRoute from '@/app/logout/route.info';
+import * as RegistrationRoute from '@/app/registration/page.info';
 
 export const Home = makeRoute('/', {
   ...defaultInfo,
@@ -17,6 +18,10 @@ export const Home = makeRoute('/', {
 export const Login = makeRoute('/login', {
   ...defaultInfo,
   ...LoginRoute.Route,
+});
+export const Registration = makeRoute('/registration', {
+  ...defaultInfo,
+  ...RegistrationRoute.Route,
 });
 
 export const getLogout = makeGetRoute(

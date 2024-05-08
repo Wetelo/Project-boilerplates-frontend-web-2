@@ -11,4 +11,8 @@ export const REST_API_PATHS = {
     ...defaultInfo,
     name: 'LOGIN',
   }),
+  REGISTRATION: makeRoute('/auth/register', {
+    ...defaultInfo,
+    name: 'REGISTRATION',
+  }),
 } as const;

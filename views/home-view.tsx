@@ -2,7 +2,7 @@
 
 import { useDialog } from '@/components/common/managed-dialog/dialog.context';
 import { logout } from '@/utils/auth/logout';
-import { Login } from '@/utils/routes';
+import { Login, Registration } from '@/utils/routes';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -52,6 +52,14 @@ export const HomeView = () => {
             </span>
           </h2>
         </Login.Link>
+        <Registration.Link>
+          <h2 className="mb-3 text-2xl font-semibold">
+            Registration{' '}
+            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+              -&gt;
+            </span>
+          </h2>
+        </Registration.Link>
         <Link href="#" onClick={onLogoutClick}>
           <h2 className="mb-3 text-2xl font-semibold">
             Logout{' '}
