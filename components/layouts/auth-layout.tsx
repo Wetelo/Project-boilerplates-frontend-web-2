@@ -9,7 +9,7 @@ const AuthLayout: FC<PropsWithChildren> = ({ children }) => {
     <div className="relative grid h-screen items-center md:grid-cols-2">
       <div className="relative flex h-full items-center justify-center px-5 py-24">
         <div className="absolute -z-10 size-full">
-          <Picture src={backgroundImage} role="presentation" fill />
+          <Picture src={backgroundImage} role="presentation" fill loading="eager" />
         </div>
         <div className="flex flex-col items-center">
           <Home.Link>

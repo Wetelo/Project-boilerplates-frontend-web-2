@@ -15,7 +15,7 @@ export const RegistrationView = () => {
     <div className="mx-auto max-w-md">
       <div className="grid gap-2 text-center">
         <h1 className="text-3xl font-bold">Register</h1>
-        <p className="text-balance">Enter your information below to register your account</p>
+        <p className="text-balance">Enter your information to create an account</p>
       </div>
       <RegistrationForm onSubmit={onSubmit} id="registration-form" />
       <Button type="submit" form="registration-form" className="w-full" disabled={isPending}>
