@@ -1,12 +1,19 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
   extends: [
+    'next',
     'next/core-web-vitals',
     'eslint:recommended',
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:tailwindcss/recommended',
   ],
+  settings: {
+    tailwindcss: {
+      callees: ['cva', 'cn'],
+      config: './tailwind.config.ts',
+    },
+  },
   ignorePatterns: ['.next', '.eslintrc.cjs', 'postcss.config.mjs'],
   plugins: ['@typescript-eslint'],
   parserOptions: {
