@@ -2,7 +2,6 @@ import { Login } from '@/utils/routes';
 import { settings } from '@/utils/settings';
 
 const APP_URL = settings.env.NEXT_PUBLIC_URL;
-console.log('🚀 ~ settings:', settings.env);
 
 export default async function sitemap() {
   const staticRoutes = ['', Login()].map((route) => ({
