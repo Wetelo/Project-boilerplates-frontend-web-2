@@ -3,7 +3,7 @@ import { useRegistrationMutation } from '../rest-api/auth/use-registration.mutat
 import { RegistrationRequestDto } from '@/types/dto/auth/registration-request.dto';
 import { useRouter } from 'next/navigation';
 import { Login } from '../routes';
-import { genericMutationErrorHandler } from '../rest-api/generic-mutation-error-handler';
+import { onUnexpectedAPIError } from '../rest-api/on-unexpected-api-error';
 
 export const useRegister = () => {
   const { mutate: registrationRequest, ...rest } = useRegistrationMutation();
@@ -16,7 +16,7 @@ export const useRegister = () => {
         toast.success('Your account has been created. Please log in');
         push(Login());
       },
-      onError: genericMutationErrorHandler,
+      onError: onUnexpectedAPIError,
     });
   };
 

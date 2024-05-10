@@ -2,7 +2,7 @@
 
 import React, { FC, PropsWithChildren, createContext, useState } from 'react';
 
-type DialogViews = 'EDIT_PROFILE';
+type DialogViews = 'FORGOT_PASSWORD';
 
 interface State {
   view?: DialogViews;

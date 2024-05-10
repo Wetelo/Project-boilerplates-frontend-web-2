@@ -6,11 +6,14 @@ export const phoneNumberSchema = (invalidPhoneMessage = 'Invalid phone number') 
   z.string().regex(phoneRegex, invalidPhoneMessage);
 
 export const removeWhitespace = <T extends ZodType = z.ZodString>(target: T) =>
-  z.string().trim().pipe(target).optional() as unknown as T;
+  z.string().trim().pipe(target) as unknown as T;
 
 export const requiredNumberSchema = (requiredMessage = 'This field is required') =>
   z.number({ invalid_type_error: requiredMessage });
 export const requiredStringSchema = (requiredMessage = 'This field is required') => z.string().min(1, requiredMessage);
+
+export const emailSchema = <T extends z.ZodString>(target: T, invalidEmailMessage = 'This email is incorrect') =>
+  target.email(invalidEmailMessage);
 
 export const strongPasswordSchema = ({
   minimumLengthMessage,
@@ -38,3 +41,16 @@ export const strongPasswordSchema = ({
         message: caseMessage ?? 'Password must contain at least 1 uppercase and 1 lowercase character',
       },
     );
+
+export const passwordConfirmationSchema = <
+  T extends z.ZodObject<{
+    password: z.ZodEffects<z.ZodString, string, string>;
+    confirmPassword: z.ZodString;
+  }>,
+>(
+  target: T,
+) =>
+  target.refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword'],
+  }) as unknown as T;

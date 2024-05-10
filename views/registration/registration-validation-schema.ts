@@ -1,24 +1,23 @@
 import { z } from 'zod';
 import {
+  emailSchema,
+  passwordConfirmationSchema,
   phoneNumberSchema,
   removeWhitespace,
   requiredStringSchema,
   strongPasswordSchema,
 } from '@/utils/form-validation';
 
-export const registrationValidationSchema = z
-  .object({
+export const registrationValidationSchema = passwordConfirmationSchema(
+  z.object({
     firstName: removeWhitespace(requiredStringSchema()),
     lastName: removeWhitespace(requiredStringSchema()),
-    email: requiredStringSchema().email('This email is incorrect'),
+    email: emailSchema(requiredStringSchema()),
     phone: phoneNumberSchema(),
     password: strongPasswordSchema(),
     confirmPassword: requiredStringSchema(),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
-    path: ['confirmPassword'],
-  });
+  }),
+);
 
 export type RegistrationFormValues = z.infer<typeof registrationValidationSchema>;
 

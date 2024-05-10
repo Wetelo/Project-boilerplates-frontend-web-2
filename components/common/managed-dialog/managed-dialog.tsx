@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import { Dialog } from '../../ui-kit/dialog';
 import { useDialog } from './dialog.context';
 
-const EditProfileDialog = dynamic(() => import('@/components/edit-profile-dialog'));
+const ForgotPasswordDialog = dynamic(() => import('@/views/forgot-password/forgot-password-dialog'));
 
 const ManagedDialog = () => {
   const { isOpen, view, closeDialog, data } = useDialog();
@@ -14,7 +14,7 @@ const ManagedDialog = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => (open ? undefined : closeDialog())}>
-      {view === 'EDIT_PROFILE' && <EditProfileDialog {...dialogProps} />}
+      {view === 'FORGOT_PASSWORD' && <ForgotPasswordDialog {...dialogProps} />}
     </Dialog>
   );
 };

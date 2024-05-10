@@ -1,8 +1,8 @@
 import { z } from 'zod';
-import { requiredStringSchema } from '@/utils/form-validation';
+import { emailSchema, requiredStringSchema } from '@/utils/form-validation';
 
 export const loginValidationSchema = z.object({
-  email: requiredStringSchema().email('This email is incorrect'),
+  email: emailSchema(requiredStringSchema()),
   password: requiredStringSchema(),
 });
 

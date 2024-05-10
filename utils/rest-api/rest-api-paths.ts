@@ -15,4 +15,12 @@ export const REST_API_PATHS = {
     ...defaultInfo,
     name: 'REGISTRATION',
   }),
+  FORGOT_PASSWORD: makeRoute('/auth/forgot-password', {
+    ...defaultInfo,
+    name: 'FORGOT_PASSWORD',
+  }),
+  RESET_PASSWORD: makeRoute('/auth/reset-password', {
+    ...defaultInfo,
+    name: 'RESET_PASSWORD',
+  }),
 } as const;

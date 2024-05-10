@@ -4,6 +4,8 @@ import { loginValidationSchema, getDefaultFormValues, LoginFormValues } from './
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui-kit/form';
 import { Input } from '@/components/ui-kit/input';
+import Link from 'next/link';
+import { useDialog } from '@/components/common/managed-dialog/dialog.context';
 
 type LoginFormProps = Omit<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLFormElement>, HTMLFormElement>,
@@ -19,6 +21,10 @@ export const LoginForm: FC<LoginFormProps> = ({ onSubmit, ...props }) => {
   });
 
   const { handleSubmit, control } = form;
+
+  const { openDialog } = useDialog();
+
+  const openForgotPasswordDialog = () => openDialog('FORGOT_PASSWORD');
 
   return (
     <Form {...form}>
@@ -43,7 +49,12 @@ export const LoginForm: FC<LoginFormProps> = ({ onSubmit, ...props }) => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <div className="flex items-center">
+                  <FormLabel>Password</FormLabel>
+                  <Link href="#" onClick={openForgotPasswordDialog} className="ml-auto inline-block text-sm underline">
+                    Forgot your password?
+                  </Link>
+                </div>
                 <FormControl>
                   <Input type="password" placeholder="Enter password" {...field} />
                 </FormControl>
