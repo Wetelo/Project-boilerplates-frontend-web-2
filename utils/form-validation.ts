@@ -1,4 +1,4 @@
-import { ZodType, z } from 'zod';
+import { CustomErrorParams, ZodRawShape, ZodType, z } from 'zod';
 
 export const phoneRegex = new RegExp(/^[+]{1}(?:[0-9-()/.]\s?){11,11}[0-9]{1}$/);
 
@@ -42,15 +42,11 @@ export const strongPasswordSchema = ({
       },
     );
 
-export const passwordConfirmationSchema = <
-  T extends z.ZodObject<{
-    password: z.ZodEffects<z.ZodString, string, string>;
-    confirmPassword: z.ZodString;
-  }>,
->(
+export const passwordConfirmationSchema = <T extends z.ZodObject<ZodRawShape>>(
   target: T,
-) =>
-  target.refine((data) => data.password === data.confirmPassword, {
+  check: (data: z.infer<T>) => boolean = (data) => data.password === data.confirmPassword,
+  message: CustomErrorParams = {
     message: "Passwords don't match",
     path: ['confirmPassword'],
-  }) as unknown as T;
+  },
+) => target.refine(check, message) as unknown as T;

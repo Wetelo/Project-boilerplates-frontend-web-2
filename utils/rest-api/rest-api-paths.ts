@@ -23,4 +23,8 @@ export const REST_API_PATHS = {
     ...defaultInfo,
     name: 'RESET_PASSWORD',
   }),
+  CHANGE_MY_PASSWORD: makeRoute('/user/password', {
+    ...defaultInfo,
+    name: 'CHANGE_MY_PASSWORD',
+  }),
 } as const;

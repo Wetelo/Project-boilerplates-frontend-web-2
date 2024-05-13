@@ -1,12 +1,16 @@
 'use client';
 
+import { useDialog } from '@/components/common/managed-dialog/dialog.context';
 import { logout } from '@/utils/auth/logout';
 import { Login, Registration } from '@/utils/routes';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export const HomeView = () => {
+  const { openDialog } = useDialog();
   const onLogoutClick = () => logout();
+
+  const openChangePasswordDialog = () => openDialog('CHANGE_PASSWORD');
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -58,6 +62,14 @@ export const HomeView = () => {
         <Link href="#" onClick={onLogoutClick}>
           <h2 className="mb-3 text-2xl font-semibold">
             Logout{' '}
+            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+              -&gt;
+            </span>
+          </h2>
+        </Link>
+        <Link href="#" onClick={openChangePasswordDialog}>
+          <h2 className="mb-3 text-2xl font-semibold">
+            Change password{' '}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>

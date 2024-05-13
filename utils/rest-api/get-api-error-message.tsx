@@ -6,6 +6,9 @@ export const getAPIErrorMessage = (error: unknown) => {
     return 'Network error, try connecting to the network or refresh the page';
   if ((error as AxiosError)?.code === 'ECONNABORTED')
     return 'Network error, try connecting to the network or refresh the page';
+  if (typeof error === 'string') {
+    return `Something went wrong!: ${error}`;
+  }
   if ((error as AxiosError<Error, unknown>)?.response?.data?.message) {
     return `Something went wrong!: ${(error as AxiosError<Error, unknown>)?.response?.data?.message}`;
   }
