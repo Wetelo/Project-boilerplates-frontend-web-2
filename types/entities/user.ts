@@ -1,10 +1,8 @@
 export type User = {
   id: number;
-  fullName: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  avatar: string;
-  phone: string;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt: Date;
+  phone: string | null;
+  avatarFileId: number | null | undefined;
 };

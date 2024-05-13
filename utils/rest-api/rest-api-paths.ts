@@ -27,4 +27,8 @@ export const REST_API_PATHS = {
     ...defaultInfo,
     name: 'CHANGE_MY_PASSWORD',
   }),
+  MY_PROFILE: makeRoute('/user/profile', {
+    ...defaultInfo,
+    name: 'MY_PROFILE',
+  }),
 } as const;

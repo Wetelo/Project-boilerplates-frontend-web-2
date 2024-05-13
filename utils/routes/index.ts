@@ -11,6 +11,7 @@ import * as LoginRoute from '@/app/(auth)/login/page.info';
 import * as LogoutRoute from '@/app/(auth)/logout/route.info';
 import * as RegistrationRoute from '@/app/(auth)/registration/page.info';
 import * as ResetPasswordRoute from '@/app/(auth)/reset-password/page.info';
+import * as MyProfileRoute from '@/app/my/profile/page.info';
 
 export const Home = makeRoute('/', {
   ...defaultInfo,
@@ -27,6 +28,10 @@ export const Registration = makeRoute('/(auth)/registration', {
 export const ResetPassword = makeRoute('/(auth)/reset-password', {
   ...defaultInfo,
   ...ResetPasswordRoute.Route,
+});
+export const MyProfile = makeRoute('/my/profile', {
+  ...defaultInfo,
+  ...MyProfileRoute.Route,
 });
 
 export const getLogout = makeGetRoute(
