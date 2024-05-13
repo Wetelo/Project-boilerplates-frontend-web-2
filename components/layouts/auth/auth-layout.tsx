@@ -1,12 +1,12 @@
 import logo from '@/public/wetelo.svg';
 import backgroundImage from './background.jpg';
 import { FC, PropsWithChildren } from 'react';
-import { Picture } from '../ui-kit/picture';
+import { Picture } from '../../ui-kit/picture';
 import { Home } from '@/utils/routes';
 
 const AuthLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <div className="relative grid h-screen items-center md:grid-cols-2">
+    <div className="relative grid min-h-svh items-center md:grid-cols-2">
       <div className="relative flex h-full items-center justify-center px-5 py-24">
         <div className="absolute -z-10 size-full">
           <Picture src={backgroundImage} role="presentation" fill loading="eager" />
