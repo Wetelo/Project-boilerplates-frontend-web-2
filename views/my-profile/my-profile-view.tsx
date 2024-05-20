@@ -10,6 +10,7 @@ import { useUpdateMyProfileMutation } from '@/utils/rest-api/user/use-update-my-
 import { toast } from 'sonner';
 import { onUnexpectedAPIError } from '@/utils/rest-api/on-unexpected-api-error';
 import { MyProfileFormProvider } from './my-profile-form-provider';
+import { MyProfileLoader } from './my-profile-loader';
 
 const prepareMyProfileFormValues = (myProfile?: User) => ({
   firstName: myProfile?.firstName,
@@ -41,7 +42,7 @@ export const MyProfileView = () => {
       <div className="grid gap-2 text-center">
         <h1 className="text-3xl font-bold">My profile</h1>
       </div>
-      <WithGenericQueryHandler queries={[myProfileQuery]}>
+      <WithGenericQueryHandler queries={[myProfileQuery]} Loader={<MyProfileLoader />}>
         <MyProfileFormProvider defaultValues={prepareMyProfileFormValues(myProfile)}>
           {({ formState: { isDirty } }) => (
             <>
