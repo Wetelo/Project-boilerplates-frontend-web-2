@@ -6,24 +6,16 @@ const defaultInfo = {
   search: z.object({}),
 };
 
-import * as HomeRoute from '@/app/page.info';
 import * as LoginRoute from '@/app/(auth)/login/page.info';
-import * as LogoutRoute from '@/app/logout/page.info';
 import * as RegistrationRoute from '@/app/(auth)/registration/page.info';
 import * as ResetPasswordRoute from '@/app/(auth)/reset-password/page.info';
-import * as MyProfileRoute from '@/app/my/profile/page.info';
+import * as HomeRoute from '@/app/(main-layout)/page.info';
+import * as MyProfileRoute from '@/app/(main-layout)/my/profile/page.info';
+import * as LogoutRoute from '@/app/logout/page.info';
 
-export const Home = makeRoute('/', {
-  ...defaultInfo,
-  ...HomeRoute.Route,
-});
 export const Login = makeRoute('/(auth)/login', {
   ...defaultInfo,
   ...LoginRoute.Route,
-});
-export const Logout = makeRoute('/(auth)/logout', {
-  ...defaultInfo,
-  ...LogoutRoute.Route,
 });
 export const Registration = makeRoute('/(auth)/registration', {
   ...defaultInfo,
@@ -33,7 +25,15 @@ export const ResetPassword = makeRoute('/(auth)/reset-password', {
   ...defaultInfo,
   ...ResetPasswordRoute.Route,
 });
-export const MyProfile = makeRoute('/my/profile', {
+export const Home = makeRoute('/(main-layout)', {
+  ...defaultInfo,
+  ...HomeRoute.Route,
+});
+export const MyProfile = makeRoute('/(main-layout)/my/profile', {
   ...defaultInfo,
   ...MyProfileRoute.Route,
+});
+export const Logout = makeRoute('/logout', {
+  ...defaultInfo,
+  ...LogoutRoute.Route,
 });
