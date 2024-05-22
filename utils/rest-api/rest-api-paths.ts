@@ -15,6 +15,14 @@ export const REST_API_PATHS = {
     ...defaultInfo,
     name: 'REGISTRATION',
   }),
+  REFRESH_AUTH_SESSION: makeRoute('/auth/refresh', {
+    ...defaultInfo,
+    name: 'REFRESH_AUTH_SESSION',
+  }),
+  LOGOUT: makeRoute('/auth/log-out', {
+    ...defaultInfo,
+    name: 'LOGOUT',
+  }),
   FORGOT_PASSWORD: makeRoute('/auth/forgot-password', {
     ...defaultInfo,
     name: 'FORGOT_PASSWORD',

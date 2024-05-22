@@ -1,16 +1,11 @@
 'use client';
 
-import { useDialog } from '@/components/common/managed-dialog/dialog.context';
-import { logout } from '@/utils/auth/logout';
-import { Login, Registration } from '@/utils/routes';
+import { useAuthSession } from '@/utils/auth/use-auth-session';
+import { Login, Logout, MyProfile, Registration } from '@/utils/routes';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export const HomeView = () => {
-  const { openDialog } = useDialog();
-  const onLogoutClick = () => logout();
-
-  const openChangePasswordDialog = () => openDialog('CHANGE_PASSWORD');
+  const { isLoggedIn, isPending } = useAuthSession();
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -43,38 +38,46 @@ export const HomeView = () => {
       </div>
 
       <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <Login.Link>
-          <h2 className="mb-3 text-2xl font-semibold">
-            Login{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-        </Login.Link>
-        <Registration.Link>
-          <h2 className="mb-3 text-2xl font-semibold">
-            Registration{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-        </Registration.Link>
-        <Link href="#" onClick={onLogoutClick}>
-          <h2 className="mb-3 text-2xl font-semibold">
-            Logout{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-        </Link>
-        <Link href="#" onClick={openChangePasswordDialog}>
-          <h2 className="mb-3 text-2xl font-semibold">
-            Change password{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-        </Link>
+        {!isLoggedIn && !isPending && (
+          <>
+            <Login.Link>
+              <h2 className="mb-3 text-2xl font-semibold">
+                Login{' '}
+                <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                  -&gt;
+                </span>
+              </h2>
+            </Login.Link>
+            <Registration.Link>
+              <h2 className="mb-3 text-2xl font-semibold">
+                Registration{' '}
+                <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                  -&gt;
+                </span>
+              </h2>
+            </Registration.Link>
+          </>
+        )}
+        {isLoggedIn && !isPending && (
+          <>
+            <MyProfile.Link>
+              <h2 className="mb-3 text-2xl font-semibold">
+                Profile
+                <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                  -&gt;
+                </span>
+              </h2>
+            </MyProfile.Link>
+            <Logout.Link>
+              <h2 className="mb-3 text-2xl font-semibold">
+                Logout{' '}
+                <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                  -&gt;
+                </span>
+              </h2>
+            </Logout.Link>
+          </>
+        )}
       </div>
     </main>
   );
