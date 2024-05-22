@@ -18,7 +18,7 @@ export const useRefreshAuthSessionQuery = (
   return useQuery<Response, AxiosError<Error>>({
     queryFn: refreshAuthSessionRequest,
     queryKey: [REST_API_PATHS.REFRESH_AUTH_SESSION()],
-    refetchInterval: 5 * 60 * 1000, // 5 minutes
+    refetchInterval: 60 * 60 * 1000, // 1 hour
     retry: false,
     refetchOnMount: false,
     retryOnMount: false,
