@@ -58,4 +58,13 @@ export const REST_API_PATHS = {
     ...defaultInfo,
     name: 'CONFIRM_CHANGE_MY_EMAIL',
   }),
+  UPLOAD_FILE: makeRoute('/file', {
+    ...defaultInfo,
+    name: 'UPLOAD_FILE',
+  }),
+  GET_FILE: makeRoute('/file/[fileId]', {
+    ...defaultInfo,
+    params: z.object({ fileId: z.string() }),
+    name: 'GET_FILE',
+  }),
 } as const;

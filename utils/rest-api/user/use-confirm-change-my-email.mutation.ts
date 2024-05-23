@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { RESTAPIClient } from '../rest-api-client';
 import { REST_API_PATHS } from '../rest-api-paths';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ConfirmChangeMyEmailRequestDto } from '@/types/dto/user/change-my-email.dto';
 
 type Params = ConfirmChangeMyEmailRequestDto;
@@ -13,7 +13,10 @@ export const confirmChangeMyEmailRequest = async (params: Params) => {
 };
 
 export const useConfirmChangeMyEmailMutation = () => {
+  const queryClient = useQueryClient();
+
   return useMutation<Response, AxiosError<Error>, Params>({
     mutationFn: confirmChangeMyEmailRequest,
+    onSettled: () => queryClient.invalidateQueries({ queryKey: [REST_API_PATHS.MY_PROFILE()] }),
   });
 };

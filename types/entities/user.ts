@@ -4,5 +4,5 @@ export type User = {
   lastName: string;
   email: string;
   phone: string | null;
-  avatarFileId: number | null | undefined;
+  avatarFileUUID: string | undefined;
 };
