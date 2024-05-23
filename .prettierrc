@@ -4,5 +4,6 @@
   "printWidth": 120,
   "trailingComma": "all",
   "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindFunctions": ["cn", "cva"]
+  "tailwindFunctions": ["cn", "cva"],
+  "tailwindConfig": "tailwind.config.ts"
 }
