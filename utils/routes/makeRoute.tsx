@@ -169,7 +169,7 @@ function createRouteBuilder<Params extends z.ZodSchema, Search extends z.ZodSche
       throw new Error(`Invalid search params for route ${info.name}: ${safeSearch?.error.message}`);
     }
 
-    const baseUrl = fn(checkedParams);
+    const baseUrl = fn(checkedParams) || '/';
     const searchString = search && queryString.stringify(search);
     return [baseUrl, searchString ? `?${searchString}` : ''].join('');
   };

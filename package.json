@@ -23,6 +23,8 @@
     "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "html-react-parser": "^5.1.10",
+    "isomorphic-dompurify": "^2.11.0",
     "js-cookie": "^3.0.5",
     "next": "14.2.3",
     "query-string": "^9.0.0",
