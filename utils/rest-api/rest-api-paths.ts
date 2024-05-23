@@ -50,4 +50,12 @@ export const REST_API_PATHS = {
     }),
     name: 'STATIC_PAGE_BY_SLUG',
   }),
+  INIT_CHANGE_MY_EMAIL: makeRoute('/user/change-email/verify-code', {
+    ...defaultInfo,
+    name: 'INIT_CHANGE_MY_EMAIL',
+  }),
+  CONFIRM_CHANGE_MY_EMAIL: makeRoute('/user/email', {
+    ...defaultInfo,
+    name: 'CONFIRM_CHANGE_MY_EMAIL',
+  }),
 } as const;

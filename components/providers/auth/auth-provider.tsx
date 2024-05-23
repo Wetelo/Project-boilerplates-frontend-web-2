@@ -13,6 +13,10 @@ import { FC, PropsWithChildren } from 'react';
  * This component is used to provide the access token to the REST API
  * client so that it can be used to authenticate API requests.
  *
+ * ! You must need to wait for the `useAuthSession` hook to finish loading
+ * ! in YOUR COMPONENT before requesting/showing authenticated content.
+ * ! You can wrap your component with the `<AuthGuard /> to archive this`.
+ *
  * @param {PropsWithChildren} props - The props object containing the
  * children of the component.
  * @return {ReactElement} The children of the component.

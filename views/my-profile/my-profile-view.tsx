@@ -11,14 +11,14 @@ import { toast } from 'sonner';
 import { onUnexpectedAPIError } from '@/utils/rest-api/on-unexpected-api-error';
 import { MyProfileFormProvider } from './my-profile-form-provider';
 import { MyProfileLoader } from './my-profile-loader';
+import { UpdateMyProfileRequestDto } from '@/types/dto/user/update-my-profile.dto';
 
-const prepareMyProfileFormValues = (myProfile?: User) => ({
+const prepareMyProfileFormValues = (myProfile?: User): Partial<MyProfileFormValues> => ({
+  email: myProfile?.email,
   firstName: myProfile?.firstName,
   lastName: myProfile?.lastName,
 });
-const prepareMyProfileDto = (myProfile: User, formValues: MyProfileFormValues) => ({
-  email: myProfile.email,
-  phone: myProfile.phone,
+const prepareMyProfileDto = (myProfile: User, formValues: MyProfileFormValues): UpdateMyProfileRequestDto => ({
   avatarFileId: myProfile.avatarFileId,
   firstName: formValues?.firstName,
   lastName: formValues?.lastName,

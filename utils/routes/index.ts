@@ -6,6 +6,7 @@ const defaultInfo = {
   search: z.object({}),
 };
 
+import * as ConfirmChangeMyEmailRoute from '@/app/(auth)/change-email/page.info';
 import * as LoginRoute from '@/app/(auth)/login/page.info';
 import * as RegistrationRoute from '@/app/(auth)/registration/page.info';
 import * as ResetPasswordRoute from '@/app/(auth)/reset-password/page.info';
@@ -14,6 +15,10 @@ import * as StaticPageRoute from '@/app/(main-layout)/[slug]/page.info';
 import * as MyProfileRoute from '@/app/(main-layout)/my/profile/page.info';
 import * as LogoutRoute from '@/app/logout/page.info';
 
+export const ConfirmChangeMyEmail = makeRoute('/(auth)/change-email', {
+  ...defaultInfo,
+  ...ConfirmChangeMyEmailRoute.Route,
+});
 export const Login = makeRoute('/(auth)/login', {
   ...defaultInfo,
   ...LoginRoute.Route,
