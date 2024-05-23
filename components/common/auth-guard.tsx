@@ -1,3 +1,5 @@
+'use client';
+
 import { useAuthSession } from '@/utils/auth/use-auth-session';
 import { FC, PropsWithChildren, ReactNode } from 'react';
 import { BlockLoader } from '../ui-kit/block-loader';
