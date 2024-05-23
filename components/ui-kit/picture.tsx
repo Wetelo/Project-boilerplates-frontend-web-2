@@ -1,3 +1,4 @@
+import { cn } from '@/utils/cn';
 import Image, { StaticImageData } from 'next/image';
 
 type AltProps = { alt?: string; role: 'presentation' } | { alt: string; role?: string };
@@ -28,14 +29,19 @@ export const Picture = ({
 }: PictureProps) => {
   return (
     <Image
-      className={className}
+      className={cn(
+        {
+          'object-cover': objectFit === 'cover',
+          'object-contain': objectFit === 'contain',
+        },
+        className,
+      )}
       src={src}
       height={height}
       width={width}
       alt={alt!}
       loading={loading}
       fill={fill}
-      objectFit={objectFit}
       {...props}
     />
   );
