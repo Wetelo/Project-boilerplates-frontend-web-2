@@ -39,4 +39,15 @@ export const REST_API_PATHS = {
     ...defaultInfo,
     name: 'MY_PROFILE',
   }),
+  STATIC_PAGES: makeRoute('/static-pages', {
+    ...defaultInfo,
+    name: 'STATIC_PAGES',
+  }),
+  STATIC_PAGE_BY_SLUG: makeRoute('/static-pages/[slug]', {
+    ...defaultInfo,
+    params: z.object({
+      slug: z.string(),
+    }),
+    name: 'STATIC_PAGE_BY_SLUG',
+  }),
 } as const;

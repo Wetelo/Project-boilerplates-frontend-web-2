@@ -10,6 +10,7 @@ import * as LoginRoute from '@/app/(auth)/login/page.info';
 import * as RegistrationRoute from '@/app/(auth)/registration/page.info';
 import * as ResetPasswordRoute from '@/app/(auth)/reset-password/page.info';
 import * as HomeRoute from '@/app/(main-layout)/page.info';
+import * as StaticPageRoute from '@/app/(main-layout)/[slug]/page.info';
 import * as MyProfileRoute from '@/app/(main-layout)/my/profile/page.info';
 import * as LogoutRoute from '@/app/logout/page.info';
 
@@ -28,6 +29,10 @@ export const ResetPassword = makeRoute('/(auth)/reset-password', {
 export const Home = makeRoute('/(main-layout)', {
   ...defaultInfo,
   ...HomeRoute.Route,
+});
+export const StaticPage = makeRoute('/(main-layout)/[slug]', {
+  ...defaultInfo,
+  ...StaticPageRoute.Route,
 });
 export const MyProfile = makeRoute('/(main-layout)/my/profile', {
   ...defaultInfo,
