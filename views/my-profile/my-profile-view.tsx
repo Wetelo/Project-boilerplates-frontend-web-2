@@ -16,23 +16,24 @@ import { UpdateMyProfileRequestDto } from '@/types/dto/user/update-my-profile.dt
 const prepareMyProfileFormValues = (myProfile?: User): Partial<MyProfileFormValues> => ({
   email: myProfile?.email,
   firstName: myProfile?.firstName,
+  avatarFileUUID: myProfile?.avatarFileUUID ? myProfile?.avatarFileUUID : undefined,
   lastName: myProfile?.lastName,
 });
-const prepareMyProfileDto = (myProfile: User, formValues: MyProfileFormValues): UpdateMyProfileRequestDto => ({
-  avatarFileId: myProfile.avatarFileId,
+const prepareMyProfileDto = (formValues: MyProfileFormValues): UpdateMyProfileRequestDto => ({
+  avatarFileUUID: formValues?.avatarFileUUID,
   firstName: formValues?.firstName,
   lastName: formValues?.lastName,
 });
 
 export const MyProfileView = () => {
   const myProfileQuery = useGetMyProfileQuery();
-  const { mutate: updateMyProfile, isPending: updatingMyProfile } = useUpdateMyProfileMutation();
+  const { mutate: updateMyProfile, isPending: updatingMyProfile, isSuccess } = useUpdateMyProfileMutation();
   const { data: myProfile } = myProfileQuery;
 
   const onSubmit = (formValues: MyProfileFormValues) => {
     if (!myProfile) throw new Error('Unexpected error: user profile is undefined');
 
-    updateMyProfile(prepareMyProfileDto(myProfile, formValues), {
+    updateMyProfile(prepareMyProfileDto(formValues), {
       onSuccess: () => toast.success('Your profile has beed successfully updated'),
       onError: onUnexpectedAPIError,
     });
@@ -51,7 +52,7 @@ export const MyProfileView = () => {
                 type="submit"
                 className="mt-5 w-full"
                 form="my-profile-form"
-                disabled={!isDirty || updatingMyProfile}
+                disabled={!isDirty || isSuccess || updatingMyProfile}
               >
                 Update
               </Button>
