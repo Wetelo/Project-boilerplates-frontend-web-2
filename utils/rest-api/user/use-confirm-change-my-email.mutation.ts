@@ -2,21 +2,21 @@ import { AxiosError } from 'axios';
 import { RESTAPIClient } from '../rest-api-client';
 import { REST_API_PATHS } from '../rest-api-paths';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { UpdateMyProfileRequestDto } from '@/types/dto/user/update-my-profile.dto';
+import { ConfirmChangeMyEmailRequestDto } from '@/types/dto/user/change-my-email.dto';
 
-type Params = UpdateMyProfileRequestDto;
+type Params = ConfirmChangeMyEmailRequestDto;
 type Response = void;
 
-export const updateMyProfileRequest = async (params: Params) => {
-  const { data } = await RESTAPIClient.put<Response>(REST_API_PATHS.MY_PROFILE(), params);
+export const confirmChangeMyEmailRequest = async (params: Params) => {
+  const { data } = await RESTAPIClient.patch<Response>(REST_API_PATHS.CONFIRM_CHANGE_MY_EMAIL(), params);
   return data;
 };
 
-export const useUpdateMyProfileMutation = () => {
+export const useConfirmChangeMyEmailMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation<Response, AxiosError<Error>, Params>({
-    mutationFn: updateMyProfileRequest,
+    mutationFn: confirmChangeMyEmailRequest,
     onSettled: () => queryClient.invalidateQueries({ queryKey: [REST_API_PATHS.MY_PROFILE()] }),
   });
 };

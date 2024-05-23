@@ -39,4 +39,32 @@ export const REST_API_PATHS = {
     ...defaultInfo,
     name: 'MY_PROFILE',
   }),
+  STATIC_PAGES: makeRoute('/static-pages', {
+    ...defaultInfo,
+    name: 'STATIC_PAGES',
+  }),
+  STATIC_PAGE_BY_SLUG: makeRoute('/static-pages/[slug]', {
+    ...defaultInfo,
+    params: z.object({
+      slug: z.string(),
+    }),
+    name: 'STATIC_PAGE_BY_SLUG',
+  }),
+  INIT_CHANGE_MY_EMAIL: makeRoute('/user/change-email/verify-code', {
+    ...defaultInfo,
+    name: 'INIT_CHANGE_MY_EMAIL',
+  }),
+  CONFIRM_CHANGE_MY_EMAIL: makeRoute('/user/email', {
+    ...defaultInfo,
+    name: 'CONFIRM_CHANGE_MY_EMAIL',
+  }),
+  UPLOAD_FILE: makeRoute('/file', {
+    ...defaultInfo,
+    name: 'UPLOAD_FILE',
+  }),
+  GET_FILE: makeRoute('/file/[fileId]', {
+    ...defaultInfo,
+    params: z.object({ fileId: z.string() }),
+    name: 'GET_FILE',
+  }),
 } as const;
