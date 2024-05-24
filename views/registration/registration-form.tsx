@@ -8,6 +8,7 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui-kit/form';
 import { Input } from '@/components/ui-kit/input';
+import { PhoneInput } from '@/components/ui-kit/phone-input';
 
 type RegistrationFormProps = Omit<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLFormElement>, HTMLFormElement>,
@@ -76,7 +77,7 @@ export const RegistrationForm: FC<RegistrationFormProps> = ({ onSubmit, ...props
               <FormItem>
                 <FormLabel>Phone</FormLabel>
                 <FormControl>
-                  <Input type="tel" placeholder="Enter your phone" {...field} />
+                  <PhoneInput placeholder="Enter your phone number" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -7,7 +7,7 @@ import {
 } from './init-change-my-phone-form-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui-kit/form';
-import { Input } from '@/components/ui-kit/input';
+import { PhoneInput } from '@/components/ui-kit/phone-input';
 
 type InitChangeMyPhoneFormProps = Omit<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLFormElement>, HTMLFormElement>,
@@ -34,7 +34,7 @@ export const InitChangeMyPhoneForm: FC<InitChangeMyPhoneFormProps> = ({ onSubmit
             <FormItem>
               <FormLabel>New phone number</FormLabel>
               <FormControl>
-                <Input type="tel" placeholder="Enter your new phone number" {...field} />
+                <PhoneInput placeholder="Enter your new phone number" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
