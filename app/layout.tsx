@@ -7,7 +7,8 @@ import { QueryClientProvider, queryClient } from '@/components/providers/query-c
 import dynamic from 'next/dynamic';
 import { AuthProvider } from '@/components/providers/auth/auth-provider';
 
-const Toaster = dynamic(() => import('@/components/ui-kit/sonner').then(({ Toaster }) => Toaster));
+const Toaster = dynamic(() => import('@/components/ui-kit/sonner').then(({ Toaster }) => Toaster), { ssr: false });
+const Devtools = dynamic(() => import('@/components/common/devtools'), { ssr: false });
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
               {children}
               <ManagedDialog />
               <Toaster position="bottom-center" />
+              <Devtools />
             </DialogProvider>
           </AuthProvider>
         </QueryClientProvider>
