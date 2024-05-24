@@ -37,8 +37,8 @@ export const useAuthSessionMeta = () => {
    *
    * @type {[string | undefined, function, function]}
    */
-  const [cookie, setCookie, deleteCookie] = useCookie(AUTH_SESSION_META_COOKIE, undefined, {
-    expires: REFRESH_TOKEN_LIFETIME_DAYS,
+
+  const [cookie, setCookie, deleteCookie] = useCookie(AUTH_SESSION_META_COOKIE, {
     domain: SHARED_COOKIES_DOMAIN, // or current domain if undefined
   });
 
@@ -47,7 +47,7 @@ export const useAuthSessionMeta = () => {
    *
    * @type {AuthSessionMeta | undefined}
    */
-  const authSessionMeta = cookie ? (JSON.parse(cookie) as AuthSessionMeta) : undefined;
+  const authSessionMeta = cookie as AuthSessionMeta | undefined;
 
   /**
    * Updates the authentication session meta information.
@@ -55,7 +55,9 @@ export const useAuthSessionMeta = () => {
    * @returns {void}
    */
   const updateAuthSessionMeta = useCallback(() => {
-    setCookie(JSON.stringify({ tokenLifetimeSeconds } satisfies AuthSessionMeta));
+    setCookie(JSON.stringify({ tokenLifetimeSeconds } satisfies AuthSessionMeta), {
+      expires: new Date(Date.now() + tokenLifetimeSeconds * 1000),
+    });
   }, []);
 
   /**
@@ -63,9 +65,7 @@ export const useAuthSessionMeta = () => {
    *
    * @returns {void}
    */
-  const clearAuthSessionMeta = useCallback(() => {
-    deleteCookie();
-  }, []);
+  const clearAuthSessionMeta = deleteCookie;
 
   return {
     authSessionMeta,

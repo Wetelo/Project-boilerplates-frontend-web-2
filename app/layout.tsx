@@ -6,6 +6,7 @@ import { DialogProvider } from '@/components/common/managed-dialog/dialog.contex
 import { QueryClientProvider, queryClient } from '@/components/providers/query-client/query-client.provider';
 import dynamic from 'next/dynamic';
 import { AuthProvider } from '@/components/providers/auth/auth-provider';
+import { CookiesProvider } from '@/components/providers/cookies/cookies-provider';
 
 const Toaster = dynamic(() => import('@/components/ui-kit/sonner').then(({ Toaster }) => Toaster), { ssr: false });
 const Devtools = dynamic(() => import('@/components/common/devtools'), { ssr: false });
@@ -26,14 +27,16 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <QueryClientProvider client={queryClient}>
-          <AuthProvider>
-            <DialogProvider>
-              {children}
-              <ManagedDialog />
-              <Toaster position="bottom-center" />
-              <Devtools />
-            </DialogProvider>
-          </AuthProvider>
+          <CookiesProvider>
+            <AuthProvider>
+              <DialogProvider>
+                {children}
+                <ManagedDialog />
+                <Toaster position="bottom-center" />
+                <Devtools />
+              </DialogProvider>
+            </AuthProvider>
+          </CookiesProvider>
         </QueryClientProvider>
       </body>
     </html>
