@@ -6,7 +6,8 @@ import { useDialog } from './dialog.context';
 
 const ForgotPasswordDialog = dynamic(() => import('@/views/forgot-password/forgot-password-dialog'));
 const ChangePasswordDialog = dynamic(() => import('@/views/change-password/change-password-dialog'));
-const InitChangeUserEmailDialog = dynamic(() => import('@/views/init-change-my-email/init-change-my-email-dialog'));
+const InitChangeMyEmailDialog = dynamic(() => import('@/views/init-change-my-email/init-change-my-email-dialog'));
+const InitChangeMyPhoneDialog = dynamic(() => import('@/views/init-change-my-phone/init-change-my-phone-dialog'));
 
 const ManagedDialog = () => {
   const { isOpen, view, closeDialog, data } = useDialog();
@@ -18,7 +19,8 @@ const ManagedDialog = () => {
     <Dialog open={isOpen} onOpenChange={(open) => (open ? undefined : closeDialog())}>
       {view === 'FORGOT_PASSWORD' && <ForgotPasswordDialog {...dialogProps} />}
       {view === 'CHANGE_PASSWORD' && <ChangePasswordDialog {...dialogProps} />}
-      {view === 'INIT_CHANGE_MY_EMAIL' && <InitChangeUserEmailDialog {...dialogProps} />}
+      {view === 'INIT_CHANGE_MY_EMAIL' && <InitChangeMyEmailDialog {...dialogProps} />}
+      {view === 'INIT_CHANGE_MY_PHONE' && <InitChangeMyPhoneDialog {...dialogProps} />}
     </Dialog>
   );
 };

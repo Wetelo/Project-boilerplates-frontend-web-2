@@ -2,8 +2,8 @@ import { CustomErrorParams, ZodRawShape, ZodType, z } from 'zod';
 
 export const phoneRegex = new RegExp(/^[+]{1}(?:[0-9-()/.]\s?){11,11}[0-9]{1}$/);
 
-export const phoneNumberSchema = (invalidPhoneMessage = 'Invalid phone number') =>
-  z.string().regex(phoneRegex, invalidPhoneMessage);
+export const phoneNumberSchema = <T extends z.ZodString>(target: T, invalidPhoneMessage = 'Invalid phone number') =>
+  target.regex(phoneRegex, invalidPhoneMessage);
 
 export const removeWhitespace = <T extends ZodType = z.ZodString>(target: T) =>
   z.string().trim().pipe(target) as unknown as T;

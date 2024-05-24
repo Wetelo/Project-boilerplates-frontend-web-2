@@ -14,7 +14,6 @@ import { MyProfileLoader } from './my-profile-loader';
 import { UpdateMyProfileRequestDto } from '@/types/dto/user/update-my-profile.dto';
 
 const prepareMyProfileFormValues = (myProfile?: User): Partial<MyProfileFormValues> => ({
-  email: myProfile?.email,
   firstName: myProfile?.firstName,
   avatarFileUUID: myProfile?.avatarFileUUID ? myProfile?.avatarFileUUID : undefined,
   lastName: myProfile?.lastName,

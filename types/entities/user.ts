@@ -3,6 +3,6 @@ export type User = {
   firstName: string;
   lastName: string;
   email: string;
-  phone: string | null;
+  phone: string | undefined;
   avatarFileUUID: string | undefined;
 };

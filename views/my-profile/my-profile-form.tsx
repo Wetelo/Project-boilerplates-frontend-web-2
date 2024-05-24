@@ -8,6 +8,7 @@ import { useDialog } from '@/components/common/managed-dialog/dialog.context';
 import { cn } from '@/utils/cn';
 import { AvatarUploader } from './avatar-uploader';
 import { Label } from '@/components/ui-kit/label';
+import { useGetMyProfileQuery } from '@/utils/rest-api/user/use-get-my-profile.query';
 
 type MyProfileFormProps = Omit<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLFormElement>, HTMLFormElement>,
@@ -19,9 +20,13 @@ type MyProfileFormProps = Omit<
 export const MyProfileForm: FC<MyProfileFormProps> = ({ onSubmit, className, ...props }) => {
   const form = useFormContext<MyProfileFormValues>();
 
+  const { data: user } = useGetMyProfileQuery();
+
   const { handleSubmit, control } = form;
 
   const { openDialog } = useDialog();
+
+  const onChangePhoneClick = () => openDialog('INIT_CHANGE_MY_PHONE');
 
   const onChangeEmailClick = () => openDialog('INIT_CHANGE_MY_EMAIL');
 
@@ -59,15 +64,31 @@ export const MyProfileForm: FC<MyProfileFormProps> = ({ onSubmit, className, ...
       <FormField
         control={control}
         name="email"
-        render={({ field }) => (
+        render={() => (
           <FormItem>
             <FormLabel>Email</FormLabel>
             <FormControl>
-              <Input disabled {...field} />
+              <Input disabled value={user?.email} />
             </FormControl>
             <FormMessage />
             <Button variant="outline" type="button" className="w-full" onClick={onChangeEmailClick}>
               Change email
+            </Button>
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={control}
+        name="phone"
+        render={() => (
+          <FormItem>
+            <FormLabel>Phone number</FormLabel>
+            <FormControl>
+              <Input disabled value={user?.phone} placeholder="Add your phone number" />
+            </FormControl>
+            <FormMessage />
+            <Button variant="outline" type="button" className="w-full" onClick={onChangePhoneClick}>
+              Add or change phone number
             </Button>
           </FormItem>
         )}

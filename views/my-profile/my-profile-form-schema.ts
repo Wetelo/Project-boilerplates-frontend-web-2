@@ -6,6 +6,7 @@ export const myProfileValidationSchema = z.object({
   lastName: requiredStringSchema(),
   avatarFileUUID: z.string().optional(),
   email: z.string(),
+  phone: z.string().optional(),
 });
 export type MyProfileFormValues = z.infer<typeof myProfileValidationSchema>;
 
