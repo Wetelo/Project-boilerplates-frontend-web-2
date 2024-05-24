@@ -6,6 +6,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
     'plugin:tailwindcss/recommended',
   ],
   settings: {
@@ -15,7 +16,7 @@ module.exports = {
     },
   },
   ignorePatterns: ['.next', '.eslintrc.cjs', 'postcss.config.mjs'],
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', '@tanstack/query'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
