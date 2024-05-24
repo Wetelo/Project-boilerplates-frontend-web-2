@@ -2,7 +2,7 @@
 
 import React, { FC, PropsWithChildren, createContext, useState } from 'react';
 
-type DialogViews = 'FORGOT_PASSWORD' | 'CHANGE_PASSWORD' | 'INIT_CHANGE_MY_EMAIL';
+type DialogViews = 'FORGOT_PASSWORD' | 'CHANGE_PASSWORD' | 'INIT_CHANGE_MY_EMAIL' | 'INIT_CHANGE_MY_PHONE';
 
 interface State {
   view?: DialogViews;

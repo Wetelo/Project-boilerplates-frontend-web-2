@@ -3,7 +3,6 @@
 import { Button } from '@/components/ui-kit/button';
 import { ConfirmChangeMyEmailFormValues } from './confirm-change-my-email-form-schema';
 import { ConfirmChangeMyEmailForm } from './confirm-change-my-email-form';
-import { createResetPasswordDto } from './create-reset-password-dto';
 import { ErrorAlert } from '@/components/common/error-alert';
 import { useEffect, useMemo } from 'react';
 import { useConfirmChangeMyEmail } from './use-confirm-change-my-email';
@@ -11,12 +10,12 @@ import { getAPIErrorMessage } from '@/utils/rest-api/get-api-error-message';
 import { useInitChangeMyEmailMutation } from '@/utils/rest-api/user/use-init-change-my-email.mutation';
 import { toast } from 'sonner';
 
-type ResetPasswordViewProps = {
+type ConfirmChangeMyEmailViewProps = {
   email: string;
   code?: string;
 };
 
-export const ConfirmChangeMyEmailView = (params: ResetPasswordViewProps) => {
+export const ConfirmChangeMyEmailView = (params: ConfirmChangeMyEmailViewProps) => {
   const {
     confirmChangeMyEmail,
     isPending: isConfirmChangeMyEmailPending,
@@ -51,8 +50,7 @@ export const ConfirmChangeMyEmailView = (params: ResetPasswordViewProps) => {
     confirmChangeMyEmail({ code, email });
   }, [params]);
 
-  const onSubmit = (formValues: ConfirmChangeMyEmailFormValues) =>
-    confirmChangeMyEmail(createResetPasswordDto(params, formValues));
+  const onSubmit = (formValues: ConfirmChangeMyEmailFormValues) => confirmChangeMyEmail(formValues);
 
   const resetError = () => {
     resetConfirmChangeMyEmailError();
@@ -75,7 +73,7 @@ export const ConfirmChangeMyEmailView = (params: ResetPasswordViewProps) => {
         </p>
       </div>
       {errorMessage && <ErrorAlert className="mt-5" message={errorMessage} reset={resetError} />}
-      <ConfirmChangeMyEmailForm onSubmit={onSubmit} id="reset-password-form" className="py-4" defaultValues={params} />
+      <ConfirmChangeMyEmailForm onSubmit={onSubmit} id="change-email-form" className="py-4" defaultValues={params} />
       <div className="mx-auto grid w-72 max-w-full grid-cols-2 gap-2">
         <Button
           type="button"
@@ -86,7 +84,7 @@ export const ConfirmChangeMyEmailView = (params: ResetPasswordViewProps) => {
         >
           Resend code
         </Button>
-        <Button type="submit" form="reset-password-form" className="w-full" disabled={isConfirmChangeMyEmailPending}>
+        <Button type="submit" form="change-email-form" className="w-full" disabled={isConfirmChangeMyEmailPending}>
           Change
         </Button>
       </div>

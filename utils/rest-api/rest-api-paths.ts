@@ -67,4 +67,12 @@ export const REST_API_PATHS = {
     params: z.object({ fileId: z.string() }),
     name: 'GET_FILE',
   }),
+  INIT_CHANGE_MY_PHONE: makeRoute('/user/change-phone/verify-code', {
+    ...defaultInfo,
+    name: 'INIT_CHANGE_MY_PHONE',
+  }),
+  CONFIRM_CHANGE_MY_PHONE: makeRoute('/user/phone', {
+    ...defaultInfo,
+    name: 'CONFIRM_CHANGE_MY_PHONE',
+  }),
 } as const;

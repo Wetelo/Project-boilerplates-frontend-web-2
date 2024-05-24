@@ -13,7 +13,7 @@ export const registrationValidationSchema = passwordConfirmationSchema(
     firstName: removeWhitespace(requiredStringSchema()),
     lastName: removeWhitespace(requiredStringSchema()),
     email: emailSchema(requiredStringSchema()),
-    phone: phoneNumberSchema(),
+    phone: phoneNumberSchema(requiredStringSchema()),
     password: strongPasswordSchema(),
     confirmPassword: requiredStringSchema(),
   }),
