@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 import { useRefreshAuthSessionQuery } from '../rest-api/auth/use-refresh-auth-session.query';
 import { useAuthSessionMeta } from './auth-session-meta';
