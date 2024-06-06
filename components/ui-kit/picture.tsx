@@ -1,5 +1,5 @@
 import { cn } from '@/utils/cn';
-import Image, { StaticImageData } from 'next/image';
+import Image, { ImageProps, StaticImageData } from 'next/image';
 
 type AltProps = { alt?: string; role: 'presentation' } | { alt: string; role?: string };
 
@@ -7,10 +7,7 @@ type SizeProps =
   | { width: number; height: number; fill?: false }
   | { width?: undefined; height?: undefined; fill: true };
 
-export type PictureProps = Omit<
-  React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
-  'src' | 'width' | 'height'
-> & {
+export type PictureProps = Omit<ImageProps, 'src' | 'width' | 'height' | 'alt'> & {
   src: string | StaticImageData;
   objectFit?: 'cover' | 'contain';
 } & AltProps &
