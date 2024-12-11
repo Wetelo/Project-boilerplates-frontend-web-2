@@ -8,11 +8,13 @@ export const metadata: Metadata = {
   title: 'Change email',
 };
 
-export default function ConfirmChangeMyEmail({
-  searchParams: { code, email },
+export default async function ConfirmChangeMyEmail({
+  searchParams: params,
 }: {
-  searchParams: Zod.infer<typeof Route.search>;
+  searchParams: Promise<Zod.infer<typeof Route.search>>;
 }) {
+  const { code, email } = await params;
+
   if (!email) {
     return <ErrorAlert message="Error: Something went wrong!" className="mx-auto w-fit" />;
   }

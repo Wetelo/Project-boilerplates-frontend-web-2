@@ -4,6 +4,7 @@ import { z } from 'zod';
 
 import { RouteBuilder } from './makeRoute';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const emptySchema = z.object({});
 
 type PushOptions = Parameters<ReturnType<typeof useRouter>['push']>[1];
@@ -43,7 +44,6 @@ function convertURLSearchParamsToObject(params: Readonly<URLSearchParams> | null
   }
 
   const obj: Record<string, string | string[]> = {};
-  // @ts-expect-error // @ts-ignore
   for (const [key, value] of params.entries()) {
     if (params.getAll(key).length > 1) {
       obj[key] = params.getAll(key);

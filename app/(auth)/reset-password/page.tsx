@@ -7,11 +7,12 @@ export const metadata: Metadata = {
   title: 'Reset password',
 };
 
-export default function ResetPassword({
-  searchParams: { code, email },
+export default async function ResetPassword({
+  searchParams: params,
 }: {
-  searchParams: Zod.infer<typeof Route.search>;
+  searchParams: Promise<Zod.infer<typeof Route.search>>;
 }) {
+  const { code, email } = await params;
   if (!code || !email) {
     return <ErrorAlert message="Error: Something went wrong!" className="mx-auto w-fit" />;
   }

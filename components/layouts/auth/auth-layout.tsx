@@ -3,13 +3,22 @@ import backgroundImage from './background.jpg';
 import { FC, PropsWithChildren } from 'react';
 import { Picture } from '../../ui-kit/picture';
 import { Home } from '@/utils/routes';
+import { viewportBreakpoints } from '@/utils/constants';
 
 const AuthLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <div className="relative grid min-h-svh items-center md:grid-cols-2">
       <div className="relative flex h-full items-center justify-center px-5 py-24">
         <div className="absolute -z-10 size-full">
-          <Picture src={backgroundImage} role="presentation" fill priority placeholder="blur" />
+          <Picture
+            src={backgroundImage}
+            role="presentation"
+            fill
+            priority
+            placeholder="blur"
+            alt="Wetelo background"
+            sizes={`(max-width: ${viewportBreakpoints.md}): 100vw, 50vw`}
+          />
         </div>
         <div className="flex flex-col items-center">
           <Home.Link>

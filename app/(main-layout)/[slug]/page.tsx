@@ -10,13 +10,14 @@ import { type StaticPage } from '@/types/entities/static-page';
 import { statusCodes } from '@/utils/rest-api/status-codes';
 import { notFound } from 'next/navigation';
 
-type Params = Zod.infer<typeof Route.params>;
+type Params = Promise<Zod.infer<typeof Route.params>>;
 
 type Props = { params: Params };
 
 export async function generateMetadata({ params }: Props) {
   try {
-    const staticPage = await getStaticPageRequest(params);
+    const waitedParams = await params;
+    const staticPage = await getStaticPageRequest(waitedParams);
     return {
       title: staticPage.title,
     };
@@ -25,14 +26,16 @@ export async function generateMetadata({ params }: Props) {
   }
 }
 
-export default async function StaticPage({ params }: { params: Zod.infer<typeof Route.params> }) {
+export default async function StaticPage({ params }: Props) {
+  const waitedParams = await params;
+
   const queryClient = new QueryClient();
 
-  const queryKey = [REST_API_PATHS.STATIC_PAGES(), params];
+  const queryKey = [REST_API_PATHS.STATIC_PAGES(), waitedParams];
 
   await queryClient.prefetchQuery({
     queryKey,
-    queryFn: () => getStaticPageRequest(params),
+    queryFn: () => getStaticPageRequest(waitedParams),
   });
 
   const staticPageQueryState = queryClient.getQueryState<StaticPage, AxiosError<Error>>(queryKey);
