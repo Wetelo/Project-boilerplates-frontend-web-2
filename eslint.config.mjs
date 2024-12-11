@@ -1,42 +1,28 @@
-import globals from 'globals';
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import parser from '@typescript-eslint/parser';
-import react from 'eslint-plugin-react';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { FlatCompat } from '@eslint/eslintrc';
 import tailwindcss from 'eslint-plugin-tailwindcss';
-import prettier from 'eslint-plugin-prettier';
-import query from '@tanstack/eslint-plugin-query';
 
-export default [
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+const eslintConfig = [
+  ...compat.extends(
+    'next/core-web-vitals',
+    'next/typescript',
+    'plugin:tailwindcss/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
+    'plugin:prettier/recommended',
+  ),
   {
-    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
-    languageOptions: {
-      parser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        project: './tsconfig.json',
-      },
-      globals: globals.browser,
-    },
-    plugins: {
-      '@typescript-eslint': typescriptEslint,
-      react,
-      tailwindcss,
-      prettier,
-      query,
-    },
     rules: {
-      ...typescriptEslint.configs.recommended.rules,
-
-      ...react.configs.flat.recommended.rules,
-
-      'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       ...tailwindcss.configs.recommended.rules,
       'tailwindcss/no-arbitrary-value': 'warn',
-
-      ...prettier.configs.recommended.rules,
-
       '@typescript-eslint/no-empty-object-type': [
         'error',
         {
@@ -45,14 +31,7 @@ export default [
         },
       ],
     },
-    settings: {
-      tailwindcss: {
-        callees: ['cva', 'cn'],
-        config: './tailwind.config.ts',
-      },
-      react: {
-        version: 'detect',
-      },
-    },
   },
 ];
+
+export default eslintConfig;
