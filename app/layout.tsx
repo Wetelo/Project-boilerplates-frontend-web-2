@@ -1,15 +1,11 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '../styles/globals.css';
-import { ManagedDialog } from '@/components/common/managed-dialog/managed-dialog';
 import { DialogProvider } from '@/components/common/managed-dialog/dialog.context';
 import { QueryClientProvider, queryClient } from '@/components/providers/query-client/query-client.provider';
-import dynamic from 'next/dynamic';
 import { AuthProvider } from '@/components/providers/auth/auth-provider';
 import { CookiesProvider } from '@/components/providers/cookies/cookies-provider';
-
-const Toaster = dynamic(() => import('@/components/ui-kit/sonner').then(({ Toaster }) => Toaster), { ssr: false });
-const Devtools = dynamic(() => import('@/components/common/devtools'), { ssr: false });
+import { Managers } from '@/components/common/managers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -31,9 +27,7 @@ export default function RootLayout({
             <AuthProvider>
               <DialogProvider>
                 {children}
-                <ManagedDialog />
-                <Toaster position="bottom-center" />
-                <Devtools />
+                <Managers />
               </DialogProvider>
             </AuthProvider>
           </CookiesProvider>
